@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mathquill to Latex</title>
+
+    <script src="https://stevenacoffman.github.io/homoglyphs/js/mathquill.js" defer></script>
+	<script>
+		var mathField;
+		let mathFieldSpan = document.getElementById('math-field');
+		let latexSpan = document.getElementById('latex');
+		let MQ = MathQuill.getInterface(2); 
+
+		let config = {
+		    spaceBehavesLikeTab: true,
+		    restrictMismatchedBrackets: true,
+		    supSubsRequireOperand: true,
+		    handlers: {
+		        edit: function () { // useful event handlers
+		            var enteredMath = mathField.latex(); // Get entered math in LaTeX format
+		            latexSpan.textContent = enteredMath; // simple API
+		        }
+		    }
+		};
+		mathField = MQ.MathField(mathFieldSpan, config);
+	</script>
+</head>
+<body>
+<p>Type math here:
+        <span id="math-field" maxlength="180"></span>
+</p>
+<p>LaTeX of what you typed:
+        <span id="latex"></span>
+</p>
+</body>
+</html>
